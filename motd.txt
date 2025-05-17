@@ -1,0 +1,20 @@
+<html>
+<head>
+<title>Motd server</title>
+<style type="text/css">
+<!--
+body {
+margin-left: 0px;
+margin-top: 0px;
+margin-right: 0px;
+margin-bottom: 0px;
+background-color: #000000;
+}
+-->
+</style>
+</head>
+<body>
+<img src="https://fbcdn-photos-b-a.akamaihd.net/hphotos-ak-xtl1/v/t1.0-0/q81/s480x480/13510986_1712224902375988_7827447255931975002_n.jpg?oh=6a4a0a8dc208c362ff972dcf202f8f33&oe=57C7C49C&__gda__=1473368562_a1a7c2de8219c17b13feec5722226af3" width="100%" height="100%" 
+border="0" align="center">
+</body>
+</html>

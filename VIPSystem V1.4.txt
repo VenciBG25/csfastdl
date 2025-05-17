@@ -1,0 +1,168 @@
+*******************************************
+*** GameBanana Destributer **********
+***** Rondanjanlonran (aka 'RjTG') ***
+******************************************
+
+INTALATION : copy "addons" folder in to your Mod directory (eg. ctrike/adons).
+
+INSTRUCTIONS : 
+	* Don't Delete vips.sql , plugins-vipsystem.ini , vips.ini and vips.cfg
+	* Don't ever change destinations of all these files or renaming it , plugins will crash.
+	* Add Vips to addons/amxmodx/configs/vips.ini File (See flags at addons/amxmodx/configs/users.ini)
+	* Before you change plugin's script , look for addons/amxmodx/scripting/include/VIPSystem.inc File.(See Flag's Definitions)
+
+**************************************************************************************************************************
+
+VIPSystem
+v1.4
+
+
+Bitbucket
+
+
+Description:
+The plugin allows to give to players special privileges. The system gives separate system registration of the player, supports 2 types of privileges: working constantly and chosen in the menu. The system of flags gives the chance to set to each player the set of privileges. Registration of new privileges occurs at the expense of addition of plug-ins that gives to system flexibility. The system doesn't depend from a mode.
+
+Additions:
+VSAdditionalLivesItem - gives additional lives
+VSWeapons - weapons: M4A1, AK47, AWP, Galil, Famas, Desert Eagle and grenades
+VSVipStatus - show vip status in table
+VSVipSpeed - sets the vip speed with any weapon
+VSVipsOnline - show vips online
+VSVipPrefixColoredTranslit - adds prefixes [VIP] in the chat. Compatible with ColoredTranslit
+VSVipPrefixAndGreenChat - adds prefixes [VIP] in the chat and text message is green
+VSVipPrefix - adds prefixes [VIP] in the chat
+VSVipChat - adds a private chat for vips
+VSSpawnGrenades - gives all grenades in respawn
+VSSpawnArmor - gives armor in respawn
+VSReserveSlot - allows to add reserve slots for vips
+VSPistolsItem - allows to take any pistol
+VSLongJumpItem - gives longjump
+VSKickAndBanAccess - allows you to kick and ban players
+VSInvisItem - gives invisibility
+VSIncreaseScoreItem - increase score
+VSGravityItem - set gravity
+VSCTBombRadar - shows the location of the bomb for CT on the radar
+VSBulletDamage - shows the damage done
+VSBecomeTerroristItem - changes team for terrorists
+VSArmorItem - gives armor
+VSAmmoAndGrenadesItem - gives ammo and all grenades
+
+More detailed information in source codes.
+
+Cvars:
+vs_password_field - name of setinfo which should store a password on a client.
+vs_amount_opening_menu - Quantity of times of opening of the menu for one life.
+Note: 0 - not limited.
+
+Commands:
+vips_list - print vip list in the server console.
+vip_menu, say /vip_menu, say /vm, say /menu - privileges menu.
+addvip <Name|IP|Steam> <Password> <access flags> <account flags> <date (dd.mm.yy)> - add new VIP'?.
+
+Include
+Code:
+/* Access flags */
+#define VIP_FLAG_ALL 0      // Any flag
+#define VIP_FLAG_A (1<<0)   // Flag "a"
+#define VIP_FLAG_B (1<<1)   // Flag "b"
+#define VIP_FLAG_C (1<<2)   // Flag "c"
+#define VIP_FLAG_D (1<<3)   // Flag "d"
+#define VIP_FLAG_E (1<<4)   // Flag "e"
+#define VIP_FLAG_F (1<<5)   // Flag "f"
+#define VIP_FLAG_G (1<<6)   // Flag "g"
+#define VIP_FLAG_H (1<<7)   // Flag "h"
+#define VIP_FLAG_I (1<<8)   // Flag "i"
+#define VIP_FLAG_J (1<<9)   // Flag "j"
+#define VIP_FLAG_K (1<<10)  // Flag "k"
+#define VIP_FLAG_L (1<<11)  // Flag "l"
+#define VIP_FLAG_M (1<<12)  // Flag "m"
+#define VIP_FLAG_N (1<<13)  // Flag "n"
+#define VIP_FLAG_O (1<<14)  // Flag "o"
+#define VIP_FLAG_P (1<<15)  // Flag "p"
+#define VIP_FLAG_Q (1<<16)  // Flag "q"
+#define VIP_FLAG_R (1<<17)  // Flag "r"
+#define VIP_FLAG_S (1<<18)  // Flag "s"
+#define VIP_FLAG_T (1<<19)  // Flag "t"
+#define VIP_FLAG_U (1<<20)  // Flag "u"
+#define VIP_FLAG_V (1<<21)  // Flag "v"
+#define VIP_FLAG_W (1<<22)  // Flag "w"
+#define VIP_FLAG_X (1<<23)  // Flag "x"
+#define VIP_FLAG_Y (1<<24)  // Flag "y"
+#define VIP_FLAG_Z (1<<25)  // Flag "z"
+
+/* Returns 1 if player is VIP, otherwise 0 */
+native VSGetUserVip(id)
+
+/* Returns 1 if player have a flag, otherwise 0 */
+native VSGetVipFlag(id, flag)
+
+/* Returns flags the player as sum of bits */
+native VSGetVipFlags(id)
+
+/* Register new item
+Parameters: 
+	name - item name
+	flag - access flag
+Returns:
+	id of item
+*/
+native VSRegisterItem(name[], flag)
+
+/* Returns 1 if the privilege is enabled, otherwise 0 */
+native VSGetItemState(id)
+
+/* Activate the privilege on the menu */
+native VSEnableItem(id)
+
+/* Disables the privilege of the menu */
+native VSDisableItem(id)
+
+/* Sets the privileges name of the menu */
+native VSSetItemName(id, name[])
+
+/* Called when the player has chosen an element */
+forward VSItemSelected(id, itemid)
+
+/* Called when a VIP connects */
+forward VSVipConnect(id)
+
+/* Called when player opening menu */
+forward VSOpeningMenu(id)
+Item menu example
+Code:
+/* VSPluginNameItem v1.0 */
+
+#include <amxmodx>
+#include <VIPSystem>
+
+#define ACCESS_FLAG VIP_FLAG_C
+
+new curItem
+
+public plugin_init() 
+{
+	register_plugin("VSPluginNameItem", "1.0", "Author")
+	
+	curItem = VSRegisterItem("Item Name", ACCESS_FLAG)
+}
+
+public VSItemSelected(id, itemid)
+{
+	if (itemid == curItem)
+	{
+		// code...
+	}
+	
+	return PLUGIN_HANDLED;
+}
+Languages
+[ru] ZETA [M|E|N]
+[ro] Dabb
+[lv] jazyxtc
+[pt] nelsonsimpsonz
+[sk] cstriker
+
+Links
+Official page
+Russian Community
